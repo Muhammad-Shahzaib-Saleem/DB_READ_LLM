@@ -1,7 +1,8 @@
 from io import StringIO
-
 import streamlit as st
 import pandas as pd
+from db_read import db_read
+
 
 st.title("Netflix DB Reader")
 st.caption("Data Source MS SQL")
@@ -9,9 +10,15 @@ st.caption("Data Source MS SQL")
 
 on = st.toggle("DB LLM")
 
-if on:
-    st.switch_page("pages/db_llm.py")
 
+col1,col2 = st.columns(2)
+
+with col1:
+    st.button("Fetch Database",on_click=db_read())
+
+with col2:
+    if on:
+        st.switch_page("pages/db_llm.py")
 
 def read_db(file_path):
     file = None

@@ -8,3 +8,4 @@ if back_home:
     st.switch_page("../Read_Db_Sql/Home.py")
 
 st.title("Chat with your Database")
+st.caption("Q & A in your DB")

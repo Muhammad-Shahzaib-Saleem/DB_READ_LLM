@@ -1,15 +1,19 @@
 import pandas as pd
 import sqlalchemy
-import pymysql
-import pymssql
-engine = sqlalchemy.create_engine("mssql+pymssql://SA:CodeWithShahzaib12@localhost:1433/master")
-
-pd.set_option('display.max_columns', None)
-
-df = pd.read_sql_table("movie",engine)
-
-df.to_csv("netflix_db.csv")
-df.to_json("movie.json")
+from dotenv import load_dotenv
+import os
 
 
-print(df.head(10))
+load_dotenv()
+
+def db_read():
+    engine = sqlalchemy.create_engine(os.getenv("CONNEC_URL"))
+
+    pd.set_option('display.max_columns', None)
+
+    df = pd.read_sql_table("movie",engine)
+
+    df.to_csv("netflix_db.csv")
+    df.to_json("movie.json")
+
+
