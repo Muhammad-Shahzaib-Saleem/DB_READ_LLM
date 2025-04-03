@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 from db_read import db_read
 
-
+st.set_page_config("Home","🏛")
 st.title("Netflix DB Reader")
 st.caption("Data Source MS SQL")
 
