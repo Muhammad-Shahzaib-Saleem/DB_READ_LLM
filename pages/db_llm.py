@@ -38,7 +38,7 @@ for message in st.session_state.messages:
 if final_data is not None:
     try:
         df = pd.DataFrame(final_data)
-        st.success(f"✅ Loaded Emails txt with {len(df)} rows")
+        st.success(f"✅ Loaded DB txt with {len(df)} rows")
 
         # Show preview
         with st.expander("👀 View first 10 rows"):
@@ -57,7 +57,7 @@ if final_data is not None:
 # Chat input
 if prompt := st.chat_input("Ask about your data..."):
     if df is None:
-        st.warning("Please check your emails file or df file first")
+        st.warning("Please check your DB file or df file first")
         st.stop()
 
     # Add user message to chat history
