@@ -4,7 +4,7 @@ from styling import load_button_style
 from groq import Groq
 from dotenv import load_dotenv
 import os
-from Home import final_data
+from Home import df
 
 load_dotenv("../.env")
 
@@ -35,14 +35,14 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 
-if final_data is not None:
+if df is not None:
     try:
-        df = pd.DataFrame(final_data)
-        st.success(f"✅ Loaded DB txt with {len(df)} rows")
+        df = pd.DataFrame(df)
+        st.success(f"✅ Loaded DB txt with {len(df.head(100))} rows")
 
         # Show preview
-        with st.expander("👀 View first 10 rows"):
-            st.dataframe(df.head(10))
+        with st.expander("👀 View first 100 rows"):
+            st.dataframe(df.head(100))
 
         # Add system message with data structure
         if len(st.session_state.messages) == 0:
